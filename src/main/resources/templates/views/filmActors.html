@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Film actors</title>
+</head>
+<body>
+<p th:text="${film.getFilmName()}"></p>
+<p th:text="${film.getYear()}"></p>
+<p th:text="${film.getRating()}"></p>
+<p th:text="${film.getDuration()}"></p>
+<p th:text="${film.getDescription()}"></p>
+<img th:src="${film.getPoster()}">
+<div th:each = "actor : ${actors}">
+    <div>
+        <a th:text="${actor.getName()}">Name</a>
+    </div>
+</div>
+</body>
+</html>

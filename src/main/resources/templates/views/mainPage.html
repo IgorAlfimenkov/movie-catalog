@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html, body {
+            margin:0;
+            padding:0;
+        }
+        body {
+
+            background-color: black;
+            color : whitesmoke;
+        }
+        a{
+            text-decoration: none;
+            color: whitesmoke;
+        }
+
+        header{
+            text-align: center;
+            background-color: black;
+            color: whitesmoke;
+            margin-bottom: 15px;
+            border-bottom-color: whitesmoke;
+        }
+
+        .container{
+            overflow:hidden;
+            margin-top: 20%;
+            width: auto;
+            border-color: whitesmoke;
+        }
+        .menu{
+            white-space:nowrap;
+            text-align: center;
+            border-color: whitesmoke;
+
+        }
+        .menu div{
+            width:100px;
+            height: 35px;
+            display:inline-block;
+            border:1px solid black;
+            margin-left: 20px;
+        }
+
+        .menu div a:hover{
+
+            background-color: whitesmoke;
+            color: black;
+
+        }
+
+        .settings
+        {
+            padding: 1%;
+            float: right;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="settings" ><a th:href="@{/films/settings}">SETTINGS</a></div>
+    <h1>Movie Library</h1>
+</header>
+<div class="container">
+<div class="menu">
+    <div ><a th:href="@{/films/all}">FILMS</a></div>
+    <div ><a th:href="@{/category/all}">CATEGORIES</a></div>
+    <div ><a th:href="@{/actors/all}">ACTORS</a></div>
+</div>
+
+</div>
+
+</body>
+</html>

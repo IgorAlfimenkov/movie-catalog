@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Films</title>
+    <style>
+        html, body {
+            margin:0;
+            padding:0;
+        }
+        body {
+
+            background-color: black;
+            color : whitesmoke;
+        }
+
+        img {
+            width: 200px;
+            border-radius: 2%;
+            margin-top:15px;
+            margin-left:35px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            background-color: whitesmoke;
+            color: black;
+        }
+
+        h1 {
+            margin-left: 15px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .films {
+            display:inline-block;
+            padding: 0;
+            margin-top: 25px;
+            margin-bottom: 50px;
+        }
+
+        .film-card {
+
+            margin-left: 10px;
+        }
+
+        .poster,
+        .info {
+            display: inline-block;
+        }
+
+        .info {
+            text-align: center;
+            margin-left: 35px;
+        }
+
+        .rating {
+            margin-left: 50px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1><a th:href="@{/films/}">Movie Library</a></h1>
+</header>
+<h2><span th:text="${category.getCategoryName()}"></span> films</h2>
+<div class="films" th:each = "film : ${films}">
+    <div class="film-card">
+        <div class="poster"><img th:src="${film.getPoster()}"></div>
+        <br/><div class="info"><a th:href="@{/films/get/{id}(id=${film.getId()})}" th:text="${film.getFilmName()}"></a><span class="rating" th:text="${film.getRating()}"></span></div>
+        <!--<p> <span th:text="${actor.getDescription}">Description</span></p>-->
+    </div>
+</div>
+</body>
+</html>

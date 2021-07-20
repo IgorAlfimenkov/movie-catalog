@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Film</title>
+    <style>
+        html, body {
+            margin:0;
+            padding:0;
+        }
+        body {
+
+            background-color: black;
+            color : whitesmoke;
+        }
+
+        img {
+            width: 270px;
+            border-radius: 2%;
+            margin-top:15px;
+            margin-left:35px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            background-color: whitesmoke;
+            color: black;
+        }
+
+        h1 {
+            margin-left: 15px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .updateForm {
+            margin-left: 30%;
+        }
+
+        .label {
+            display: inline-block;
+            text-align: right;
+            width: 40%;
+            padding: 5px;
+            vertical-align: top;
+        }
+
+        .input {
+
+            display: inline-flex;
+
+        }
+
+        .container {
+            margin:  auto;
+            margin-top: 90px;
+            max-width: 1200px;
+            padding: 10px;
+        }
+
+        .section {
+            padding: 1%;
+            width: 50%;
+            border-radius: 5px;
+            background-color: whitesmoke;
+            color: black;
+            border: solid;
+        }
+
+        button{
+            font-size: 25px;
+            border: solid black;
+            border-radius: 5px;
+            margin-left: 305px;
+            margin-top: 25px;
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <h1><a th:href="@{/films/}">Movie Library</a></h1>
+</header>
+<form class="updateForm" method="post">
+
+    <div class="section">
+        <div class="row">
+            <div class="label">
+                <label> Enter film id: </label>
+            </div>
+            <div class="input">
+                <input autofocus type="text" name="id"  class="field">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                <label> Enter film name: </label>
+            </div>
+            <div class="input">
+                <input autofocus type="text"  class="field">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                <label> Enter film description: </label>
+            </div>
+            <div class="input">
+                <input autofocus type="text"  class="field">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                <label> Enter poster path: </label>
+            </div>
+            <div class="input">
+                <input autofocus type="text"  class="field">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                <label> Enter trailer path: </label>
+            </div>
+            <div class="input">
+                <input autofocus type="text"  class="field">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                <label> Enter companyname : </label>
+            </div>
+            <div class="input">
+                <input autofocus type="text"  class="field">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                <label> Enter year : </label>
+            </div>
+            <div class="input">
+                <input autofocus type="text"  class="field">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                <label> Enter rating : </label>
+            </div>
+            <div class="input">
+                <input autofocus type="text"  class="field">
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                <label> Enter duration : </label>
+            </div>
+            <div class="input">
+                <input autofocus type="text"  class="field">
+            </div>
+        </div>
+    </div>
+    <br>
+    <input id="update" type="submit"  value="UPDATE">
+</form>
+</body>
+</html>

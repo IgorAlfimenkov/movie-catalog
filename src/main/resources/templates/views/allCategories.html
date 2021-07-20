@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Movie categories</title>
+    <style>
+        html, body {
+            margin:0;
+            padding:0;
+        }
+
+        h1 {
+            margin-left: 15px;
+        }
+
+        body {
+
+            background-color: black;
+            color : whitesmoke;
+        }
+
+        nav {
+            background-color: whitesmoke;
+            float: left;
+            width: 150px;
+            text-align: center;
+            margin-left: 10px;
+            margin-top: 10px;
+            padding: 5%;
+            border-radius: 2%;
+            border-color: whitesmoke;
+        }
+
+        header{
+            text-align: center;
+            background-color: black;
+            color: whitesmoke;
+            margin-bottom: 15px;
+            border-bottom-color: whitesmoke;
+            border-radius: 2%;
+            border-color: whitesmoke;
+        }
+
+        .add {
+            width: 300px;
+            height: 55px;
+            background-color: whitesmoke;
+            border-radius: 2%;
+            margin-top: 50px;
+            margin-left: 500px;
+            padding: 5%;
+
+        }
+        a {
+          text-decoration: none;
+        }
+        a:hover {
+            background-color: black;
+            color: whitesmoke;
+        }
+
+        .search {
+            float: right;
+            padding: 1%;
+        }
+
+
+    </style>
+</head>
+<body>
+<header>
+    <form class="search" action="/category/get" method="get">
+        <input type="search" name="name" placeholder="Search...">
+        <input type="submit" value="Search">
+    </form>
+    <h1><a th:href="@{/films/}">Movie Library</a></h1>
+</header>
+
+<nav>
+<ul class="menu" th:each = "category : ${categories}">
+    <li><a th:href="@{/category/films/{id}(id=${category.getId()})}" th:text="${category.getCategoryName()}">Name</a></li>
+</ul>
+</nav>
+<form class="add" method="post">
+    <input type="text" name="name" placeholder="Enter name" />
+    <input type="text" name="id" placeholder="Enter id" />
+    <button type="submit">Add</button>
+</form>
+</body>
+</html>
