@@ -4,9 +4,10 @@ import com.project.ResourceServer.entity.Actor;
 import com.project.ResourceServer.entity.Category;
 import com.project.ResourceServer.entity.Film;
 import com.project.ResourceServer.entity.User;
+import com.project.ResourceServer.service.api.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.project.ResourceServer.repos.FilmRepository;
+import com.project.ResourceServer.repository.FilmRepository;
 
 import java.util.ArrayList;
 import java.util.List;

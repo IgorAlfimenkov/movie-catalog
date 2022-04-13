@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    UserServiceImpl  userService;
+    private final UserServiceImpl  userService;
 
     @Autowired
     public UserController(UserServiceImpl userService) {
@@ -43,14 +43,5 @@ public class UserController {
     public User getUser(@PathVariable Long id)
     {
         return userService.getUser(id);
-    }
-
-    @GetMapping("/films/{id}")
-    public String  getFilms(@PathVariable Long id, Model model)
-    {
-        User user = userService.getUser(id);
-        List<Film> films = user.getFilms();
-        model.addAttribute("films",films);
-        return "views/favFilms";
     }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 @Entity
-@Table(name="films")
+@Table(name="film")
 public class Film {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,

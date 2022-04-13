@@ -1,4 +1,4 @@
-package com.project.ResourceServer.service;
+package com.project.ResourceServer.service.api;
 
 import com.project.ResourceServer.entity.Actor;
 import com.project.ResourceServer.entity.Film;

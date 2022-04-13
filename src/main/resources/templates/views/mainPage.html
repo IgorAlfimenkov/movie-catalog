@@ -5,20 +5,22 @@
     <title>Title</title>
     <style>
         html, body {
-            margin:0;
-            padding:0;
+            margin: 0;
+            padding: 0;
         }
+
         body {
 
             background-color: black;
-            color : whitesmoke;
+            color: whitesmoke;
         }
-        a{
+
+        a {
             text-decoration: none;
             color: whitesmoke;
         }
 
-        header{
+        header {
             text-align: center;
             background-color: black;
             color: whitesmoke;
@@ -26,35 +28,36 @@
             border-bottom-color: whitesmoke;
         }
 
-        .container{
-            overflow:hidden;
+        .container {
+            overflow: hidden;
             margin-top: 20%;
             width: auto;
             border-color: whitesmoke;
         }
-        .menu{
-            white-space:nowrap;
+
+        .menu {
+            white-space: nowrap;
             text-align: center;
             border-color: whitesmoke;
 
         }
-        .menu div{
-            width:100px;
+
+        .menu div {
+            width: 100px;
             height: 35px;
-            display:inline-block;
-            border:1px solid black;
+            display: inline-block;
+            border: 1px solid black;
             margin-left: 20px;
         }
 
-        .menu div a:hover{
+        .menu div a:hover {
 
             background-color: whitesmoke;
             color: black;
 
         }
 
-        .settings
-        {
+        .settings {
             padding: 1%;
             float: right;
             margin-bottom: 10px;
@@ -63,17 +66,18 @@
 </head>
 <body>
 <header>
-    <div class="settings" ><a th:href="@{/films/settings}">SETTINGS</a></div>
     <h1>Movie Library</h1>
 </header>
 <div class="container">
-<div class="menu">
-    <div ><a th:href="@{/films/all}">FILMS</a></div>
-    <div ><a th:href="@{/category/all}">CATEGORIES</a></div>
-    <div ><a th:href="@{/actors/all}">ACTORS</a></div>
+    <div class="menu">
+        <div><a th:href="@{/films/all}">FILMS</a></div>
+        <div><a th:href="@{/category/all}">CATEGORIES</a></div>
+        <div><a th:href="@{/actors/}">ACTORS</a></div>
+    </div>
 </div>
 
-</div>
+
 
 </body>
 </html>
+

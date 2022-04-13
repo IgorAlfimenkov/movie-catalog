@@ -3,11 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <title>Add new Actor</title>
+    <style>
+
+        html, body {
+            margin:0;
+            padding:0;
+        }
+        body {
+
+            background-color: black;
+            color : whitesmoke;
+        }
+
+        img {
+            width: 200px;
+            border-radius: 2%;
+            margin-top:15px;
+            margin-left:35px;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:hover {
+            background-color: whitesmoke;
+            color: black;
+        }
+
+        h1 {
+            margin-left: 15px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-<form method="post">
+<header>
+    <h1><a th:href="@{/films/}">Movie Library</a></h1>
+</header>
+<form method= "post" action="/actors/add">
     <input type="text" name="name" placeholder="Enter name" />
-    <input type="text" name="id" placeholder="Enter id" />
+    <br><br>
+    <input type="text" name="photo" placeholder="Enter photo url" />
+    <br><br>
+    <input type="text" name="description" placeholder="Enter description" />
+    <br>
     <button type="submit">Add</button>
 </form>
 </body>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd"
+        logicalFilePath="db/changelog/homework-2">
+
+    <changeSet id="1" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/01.create-customers-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="2" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/02.create-actors-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="3" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/03.create-category-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="4" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/04.create-film-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="5" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/05.create-film-actor-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="6" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/06.create-film-category-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="7" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/07.create-customer-films-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="8" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/08.insert-into-customer-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="9" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/09.insert-into-category-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="10" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/10.insert-into-actors-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="11" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/11.insert-into-films-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="12" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/12.insert-into-film-actor-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="13" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/13.insert-into-film-category-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="14" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/14.insert-into-customer-film-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="15" author="ialfimenkov">
+        <sqlFile encoding="utf8" path="./sql/15.create-column-rating-in-table-film.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+</databaseChangeLog>

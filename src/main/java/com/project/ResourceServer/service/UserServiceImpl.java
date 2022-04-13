@@ -1,9 +1,10 @@
 package com.project.ResourceServer.service;
 
 import com.project.ResourceServer.entity.User;
+import com.project.ResourceServer.service.api.UserInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.project.ResourceServer.repos.UserRepository;
+import com.project.ResourceServer.repository.UserRepository;
 
 import java.util.List;
 

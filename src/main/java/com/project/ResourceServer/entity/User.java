@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name ="users")
+@Table(name ="customers")
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE,
@@ -25,8 +25,8 @@ public class User {
     private String surname;
     @ManyToMany
     @JoinTable(
-            name = "user_films",
-            joinColumns = {@JoinColumn(name="user_id")},
+            name = "customer_film",
+            joinColumns = {@JoinColumn(name="customer_id")},
             inverseJoinColumns = {@JoinColumn(name="film_id")}
     )
     List<Film> films = new ArrayList<Film>();

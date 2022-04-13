@@ -41,6 +41,12 @@ public class Actor {
         this.photo = photo;
     }
 
+    public Actor(String name, String photo, String description) {
+        this.name = name;
+        this.photo = photo;
+        this.description = description;
+    }
+
     public List<Film> getFilms()
     {
         return films;

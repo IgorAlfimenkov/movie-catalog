@@ -114,26 +114,7 @@
 <br>
 <br>
 <iframe class="trailer" width="560" height="315"  th:src="${film.getTrailer()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<!--
-<img th:src="${film.getPoster()}">
-<p  th:text="${film.getFilmName()}"></p>
-<p th:text="${film.getDescription()}"></p>
-<p>Actors:</p>
-<div th:each = "actor : ${film.actors}">
-    <div>
-        <a th:text="${actor.getName()}">Name</a>
-    </div>
-</div>
-<br>
-<p>Categories:</p>
-<div th:each = "category : ${film.categories}">
-    <div>
-        <a th:text="${category.getCategoryName()}">Name</a>
-    </div>
-</div>
--->
-
-<a class="actor" th:href="@{/films/add/actor}">Add actor</a>
+<a class="actor" th:href="@{/films/add/actor/{id}(id=${film.getId()})}">Add actor</a>
 <a class="category" th:href="@{/films/add/category}">Add category</a>
 <a class="update" th:href="@{/films/{id}/edit(id=${film.getId()})}">Update</a>
 </body>

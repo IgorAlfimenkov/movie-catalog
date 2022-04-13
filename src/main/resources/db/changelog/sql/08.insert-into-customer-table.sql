@@ -1,0 +1,1 @@
+insert into customers ( nickname, email, name, surname ) values ( 'testUser', 'test@mail.ru', 'test', 'user')

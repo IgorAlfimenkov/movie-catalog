@@ -1,26 +1,23 @@
 package com.project.ResourceServer.controller;
 
-import com.project.ResourceServer.entity.Actor;
 import com.project.ResourceServer.entity.Category;
 import com.project.ResourceServer.entity.Film;
-import com.project.ResourceServer.service.FilmService;
+import com.project.ResourceServer.service.api.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.project.ResourceServer.service.CategoryServiceImpl;
 
-import java.awt.*;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
 
-    CategoryServiceImpl categoryService;
-    FilmService filmService;
+    private final CategoryServiceImpl categoryService;
+    private final FilmService filmService;
 
     @Autowired
     public CategoryController(CategoryServiceImpl categoryService, FilmService filmService) {
@@ -38,13 +35,13 @@ public class CategoryController {
     }
 
     @PostMapping("/all")
-    public String add(@RequestParam String name, @RequestParam Long id, Model model)
+    public String add(@RequestParam String name, Model model)
     {
 
-        Category category = new Category(id,name);
+        Category category = new Category(null,name);
         categoryService.addCategory(category);
         List<Category> categories = categoryService.getCategories();
-        model.addAttribute("actors", categories);
+        model.addAttribute("categories", categories);
         return "views/allCategories";
     }
 

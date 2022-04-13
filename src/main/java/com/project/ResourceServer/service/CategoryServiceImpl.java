@@ -2,9 +2,10 @@ package com.project.ResourceServer.service;
 
 import com.project.ResourceServer.entity.Category;
 import com.project.ResourceServer.entity.Film;
+import com.project.ResourceServer.service.api.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.project.ResourceServer.repos.CategoryRepository;
+import com.project.ResourceServer.repository.CategoryRepository;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,8 +5,8 @@
     <title>Movie categories</title>
     <style>
         html, body {
-            margin:0;
-            padding:0;
+            margin: 0;
+            padding: 0;
         }
 
         h1 {
@@ -16,22 +16,10 @@
         body {
 
             background-color: black;
-            color : whitesmoke;
+            color: whitesmoke;
         }
 
-        nav {
-            background-color: whitesmoke;
-            float: left;
-            width: 150px;
-            text-align: center;
-            margin-left: 10px;
-            margin-top: 10px;
-            padding: 5%;
-            border-radius: 2%;
-            border-color: whitesmoke;
-        }
-
-        header{
+        header {
             text-align: center;
             background-color: black;
             color: whitesmoke;
@@ -41,27 +29,37 @@
             border-color: whitesmoke;
         }
 
-        .add {
-            width: 300px;
-            height: 55px;
-            background-color: whitesmoke;
-            border-radius: 2%;
-            margin-top: 50px;
-            margin-left: 500px;
-            padding: 5%;
+        main {
+            width: 100px;
+            height: 35px;
+            display: inline-block;
+            border: 1px solid black;
+            margin-left: 40px;
+        }
 
-        }
         a {
-          text-decoration: none;
-        }
-        a:hover {
-            background-color: black;
+            text-decoration: none;
+            font-size: 20px;
             color: whitesmoke;
+        }
+
+        a:hover {
+            background-color: white;
+            color: black;
         }
 
         .search {
             float: right;
             padding: 1%;
+        }
+
+        .menu {
+            float: left;
+        }
+
+        .add {
+            float: right;
+            margin-right: 40px;
         }
 
 
@@ -76,14 +74,17 @@
     <h1><a th:href="@{/films/}">Movie Library</a></h1>
 </header>
 
-<nav>
-<ul class="menu" th:each = "category : ${categories}">
-    <li><a th:href="@{/category/films/{id}(id=${category.getId()})}" th:text="${category.getCategoryName()}">Name</a></li>
-</ul>
-</nav>
+<main>
+    <ul class="menu" th:each="category : ${categories}">
+        <li><a th:href="@{/category/films/{id}(id=${category.getId()})}"
+               th:text="${category.getCategoryName().toUpperCase()}">Name</a></li>
+        <br>
+    </ul>
+
+</main>
 <form class="add" method="post">
-    <input type="text" name="name" placeholder="Enter name" />
-    <input type="text" name="id" placeholder="Enter id" />
+    <input type="text" name="name" placeholder="Enter name"/>
+    <br><br>
     <button type="submit">Add</button>
 </form>
 </body>

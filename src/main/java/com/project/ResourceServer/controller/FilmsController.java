@@ -4,7 +4,7 @@ import com.project.ResourceServer.entity.Actor;
 import com.project.ResourceServer.entity.Category;
 import com.project.ResourceServer.entity.Film;
 import com.project.ResourceServer.entity.User;
-import com.project.ResourceServer.service.ActorService;
+import com.project.ResourceServer.service.api.ActorService;
 import com.project.ResourceServer.service.CategoryServiceImpl;
 import com.project.ResourceServer.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +20,10 @@ import java.util.List;
 public class FilmsController {
 
 
-    CategoryServiceImpl categoryService;
-    UserServiceImpl userService;
-    ActorService actorService;
-    FilmServiceImpl filmService;
+    private final CategoryServiceImpl categoryService;
+    private final UserServiceImpl userService;
+    private final ActorService actorService;
+    private final  FilmServiceImpl filmService;
 
     @Autowired
     public FilmsController(FilmServiceImpl filmService, CategoryServiceImpl categoryService, UserServiceImpl userService, ActorService actorService) {
@@ -143,22 +143,16 @@ public class FilmsController {
         return "views/filmActors";
     }
 
-    @PostMapping("/add/favorite/{id}")
-    public String addFav(@PathVariable Long id, @RequestParam(name = "name") String name) {
-        Film film = filmService.getFilmByName(name);
-        User user = userService.getUser(id);
-        user.getFilms().add(film);
-        return "views/allFilms";
-    }
 
-    @GetMapping("/add/actor")
-    public String addActorPage() {
+    @GetMapping("/add/actor/{id}")
+    public String addActorPage(@PathVariable Long id, Model model) {
+        model.addAttribute("filmId", id);
         return "views/newActor";
     }
 
-    @PostMapping("/add/actor")
-    public String addActor(@RequestParam(name = "filmname") String filmname, @RequestParam(name = "name") String name, Model model) {
-        Film film = filmService.getFilmByName(filmname);
+    @PostMapping("/add/actor/{id}")
+    public String addActor(@PathVariable Long id, @RequestParam(name = "name") String name, Model model) {
+        Film film = filmService.getFilmById(id);
         Actor actor = actorService.getActorByName(name);
         film.AddActor(actor);
         filmService.saveFilm(film.getId(), film);
@@ -178,10 +172,4 @@ public class FilmsController {
         filmService.saveFilm(film.getId(), film);
         return "views/allFilms";
     }
-
-    @GetMapping("/settings")
-    public String settingsPage() {
-        return "views/settings";
-    }
-
 }
