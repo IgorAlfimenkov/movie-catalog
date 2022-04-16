@@ -71,8 +71,7 @@ public class Film {
 
     }
 
-    public Film(Long id, String name, String description, String poster, String trailer, int year, float rating, int duration,  String company) {
-        this.id = id;
+    public Film(String name, String description, String poster, String trailer, int year, float rating, int duration,  String company) {
         this.name = name;
         this.description = description;
         this.poster = poster;

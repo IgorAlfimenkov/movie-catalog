@@ -76,13 +76,8 @@
     </ul>
     <br/>
     <br/>
-    <!--<b>Categories</b>
-    <div th:each = "film : ${actor.getFilms()}">
-        <ul th:each = "category : ${film.getCategories()}">
-            <li><a th:href="@{/category/films/{id}(id=${category.getId()})}" th:text="${category.getCategoryName()}">Name</a></li>
-        </ul>
-    </div>-->
 </div>
+<a th:href="@{/actors/edit/{id}(id=${actor.getId()})}">Update</a>
 <a th:href ="@{/actors/delete/{id}(id=${actor.getId()})}" >Delete actor</a>
 </body>
 </html>

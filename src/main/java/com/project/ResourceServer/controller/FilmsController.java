@@ -23,7 +23,7 @@ public class FilmsController {
     private final CategoryServiceImpl categoryService;
     private final UserServiceImpl userService;
     private final ActorService actorService;
-    private final  FilmServiceImpl filmService;
+    private final FilmServiceImpl filmService;
 
     @Autowired
     public FilmsController(FilmServiceImpl filmService, CategoryServiceImpl categoryService, UserServiceImpl userService, ActorService actorService) {
@@ -51,8 +51,7 @@ public class FilmsController {
     }
 
     @PostMapping("/add")
-    public String addFilm(@RequestParam(name = "id") Long id,
-                          @RequestParam(name = "filmName", required = false) String filmName,
+    public String addFilm(@RequestParam(name = "filmName", required = false) String filmName,
                           @RequestParam(name = "year") int year,
                           @RequestParam(name = "duration") int duration,
                           @RequestParam(name = "rating") float rating,
@@ -61,7 +60,7 @@ public class FilmsController {
                           @RequestParam(name = "trailer") String trailer,
                           @RequestParam(name = "companyname") String company,
                           @RequestParam(name = "category") String category) {
-        Film film = new Film(id, filmName, description, poster, trailer, year, rating, duration, company);
+        Film film = new Film(filmName, description, poster, trailer, year, rating, duration, company);
         Category category1 = categoryService.getCategory(category);
         film.setCategories(category1);
         filmService.addFilm(film);
@@ -75,8 +74,9 @@ public class FilmsController {
     }
 
     @PostMapping("/{id}")
-    public String saveFilm(@PathVariable Long id, Film film) {
+    public String saveFilm(@PathVariable Long id, Film film, Model model) {
         filmService.saveFilm(id, film);
+        model.addAttribute("films", filmService.getAllFilms());
         return "views/allFilms";
     }
 
@@ -147,7 +147,7 @@ public class FilmsController {
     @GetMapping("/add/actor/{id}")
     public String addActorPage(@PathVariable Long id, Model model) {
         model.addAttribute("filmId", id);
-        return "views/newActor";
+        return "views/ne wActor";
     }
 
     @PostMapping("/add/actor/{id}")

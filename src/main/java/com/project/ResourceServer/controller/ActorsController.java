@@ -97,4 +97,18 @@ public class ActorsController {
     public List<Actor> getActorsByFilm(@RequestBody Film film) {
         return actorService.getActorsByFilm(film);
     }
+
+    @GetMapping("/edit/{id}")
+    public String getUpdateActorForm(@PathVariable Long id,Model model){
+        model.addAttribute("actor", actorService.getActor(id));
+        return "views/updateActor";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String updateActor(@PathVariable Long id,Actor actor, Model model) {
+        actorService.saveActor(id, actor);
+        model.addAttribute("films", filmService.getAllFilms());
+        return "views/allFilms";
+    }
+
 }

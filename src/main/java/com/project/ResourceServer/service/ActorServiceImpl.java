@@ -27,6 +27,8 @@ public class ActorServiceImpl implements ActorService {
 
         Actor a = actorRepository.findById(id).get();
         a.setName(actor.getName());
+        a.setPhoto(actor.getPhoto());
+        a.setDescription(actor.getDescription());
         return actorRepository.save(a);
     }
 
