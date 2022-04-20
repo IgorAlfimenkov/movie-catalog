@@ -88,7 +88,7 @@
 <header>
     <h1><a th:href="@{/films/}">Movie Library</a></h1>
 </header>
-<form class="updateForm" method="post" th:action="@{/films/add}" th:object="${film}">
+<form class="updateForm" method="post" th:action="@{/films/add}">
 
     <div class="section">
         <div class="row">
@@ -96,7 +96,7 @@
                 <label> Enter film name: </label>
             </div>
             <div class="input">
-                <input autofocus type="text" class="field">
+                <input autofocus type="text"  th:name="filmName"class="field">
             </div>
         </div>
         <div class="row">
@@ -104,7 +104,7 @@
                 <label> Enter film description: </label>
             </div>
             <div class="input">
-                <input autofocus type="text" class="field">
+                <input autofocus type="text" th:name="description" class="field">
             </div>
         </div>
         <div class="row">
@@ -112,7 +112,7 @@
                 <label> Enter poster path: </label>
             </div>
             <div class="input">
-                <input autofocus type="text" class="field">
+                <input autofocus type="text" th:name="poster" class="field">
             </div>
         </div>
         <div class="row">
@@ -120,7 +120,7 @@
                 <label> Enter trailer path: </label>
             </div>
             <div class="input">
-                <input autofocus type="text" class="field">
+                <input autofocus type="text" th:name="trailer" class="field">
             </div>
         </div>
         <div class="row">
@@ -128,7 +128,7 @@
                 <label> Enter companyname : </label>
             </div>
             <div class="input">
-                <input autofocus type="text" class="field">
+                <input autofocus type="text" th:name="companyname" class="field">
             </div>
         </div>
         <div class="row">
@@ -136,7 +136,7 @@
                 <label> Enter year : </label>
             </div>
             <div class="input">
-                <input autofocus type="text" class="field">
+                <input autofocus type="text" th:name="year" class="field">
             </div>
         </div>
         <div class="row">
@@ -144,7 +144,7 @@
                 <label> Enter rating : </label>
             </div>
             <div class="input">
-                <input autofocus type="text" class="field">
+                <input autofocus type="text" th:name="rating" class="field">
             </div>
         </div>
         <div class="row">
@@ -152,7 +152,7 @@
                 <label> Enter duration : </label>
             </div>
             <div class="input">
-                <input autofocus type="text" class="field">
+                <input autofocus type="text" th:name="duration" class="field">
             </div>
         </div>
     </div>

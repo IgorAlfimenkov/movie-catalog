@@ -51,7 +51,15 @@ public class FilmsController {
     }
 
     @PostMapping("/add")
-    public String addFilm(Film film, Model model) {
+    public String addFilm(@RequestParam(name = "filmName", required = false) String filmName,
+                          @RequestParam(name = "year") int year,
+                          @RequestParam(name = "duration") int duration,
+                          @RequestParam(name = "rating") float rating,
+                          @RequestParam(name = "description") String description,
+                          @RequestParam(name = "poster") String poster,
+                          @RequestParam(name = "trailer") String trailer,
+                          @RequestParam(name = "companyname") String company, Model model) {
+        Film film = new Film(filmName, description, poster, trailer, year, rating, duration, company);
         filmService.addFilm(film);
         model.addAttribute("films",filmService.getAllFilms());
         return "views/allFilms";
