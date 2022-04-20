@@ -51,19 +51,9 @@ public class FilmsController {
     }
 
     @PostMapping("/add")
-    public String addFilm(@RequestParam(name = "filmName", required = false) String filmName,
-                          @RequestParam(name = "year") int year,
-                          @RequestParam(name = "duration") int duration,
-                          @RequestParam(name = "rating") float rating,
-                          @RequestParam(name = "description") String description,
-                          @RequestParam(name = "poster") String poster,
-                          @RequestParam(name = "trailer") String trailer,
-                          @RequestParam(name = "companyname") String company,
-                          @RequestParam(name = "category") String category) {
-        Film film = new Film(filmName, description, poster, trailer, year, rating, duration, company);
-        Category category1 = categoryService.getCategory(category);
-        film.setCategories(category1);
+    public String addFilm(Film film, Model model) {
         filmService.addFilm(film);
+        model.addAttribute("films",filmService.getAllFilms());
         return "views/allFilms";
     }
 
@@ -146,7 +136,7 @@ public class FilmsController {
 
     @GetMapping("/add/actor/{id}")
     public String addActorPage(@PathVariable Long id, Model model) {
-        model.addAttribute("filmId", id);
+        model.addAttribute("film", filmService.getFilmById(id));
         return "views/newActor";
     }
 

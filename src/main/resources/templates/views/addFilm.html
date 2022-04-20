@@ -88,11 +88,9 @@
 <header>
     <h1><a th:href="@{/films/}">Movie Library</a></h1>
 </header>
-<form class="updateForm" method="post">
+<form class="updateForm" method="post" th:action="@{/films/add}" th:object="${film}">
 
     <div class="section">
-        <div class="row">
-        </div>
         <div class="row">
             <div class="label">
                 <label> Enter film name: </label>

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Add Actor</title>
 </head>
 <body>
-<form method="post" action="/actors/add/film_id">
+<form method="post" th:action="@{/films/add/actor/{id}(id=${film.getId()})}" >
     <div class="inputField">
         <label >Enter actor name:</label>
         <input type="text" name="name">

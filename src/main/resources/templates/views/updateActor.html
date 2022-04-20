@@ -47,10 +47,13 @@
     <h1><a th:href="@{/films/}">Movie Library</a></h1>
 </header>
 <form method="post" th:action="@{/actors/edit/{id}(id=${actor.getId()})}" th:object="${actor}">
+    <label> Enter actor name: </label>
     <input type="text" name="name" th:field="${actor.name}"/>
     <br><br>
+    <label> Enter actor description: </label>
     <input type="text" name="description" th:field="${actor.description}"/>
     <br><br>
+    <label> Enter poster path: </label>
     <input type="text" name="photo" th:field="${actor.photo}" />
     <br>
     <button type="submit">UPDATE</button>
