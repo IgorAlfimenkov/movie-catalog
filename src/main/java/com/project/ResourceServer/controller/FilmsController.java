@@ -147,7 +147,7 @@ public class FilmsController {
     @GetMapping("/add/actor/{id}")
     public String addActorPage(@PathVariable Long id, Model model) {
         model.addAttribute("filmId", id);
-        return "views/ne wActor";
+        return "views/newActor";
     }
 
     @PostMapping("/add/actor/{id}")
