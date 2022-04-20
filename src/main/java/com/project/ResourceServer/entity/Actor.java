@@ -9,10 +9,10 @@ import java.util.Objects;
 @Table(name="actors")
 public class Actor {
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+    @GeneratedValue(strategy= GenerationType.IDENTITY)/*,
             generator = "actors_seq")
     @SequenceGenerator(name="actors_seq",
-            sequenceName = "actors_actorid_seq", allocationSize = 1)
+            sequenceName = "actors_actorid_seq", allocationSize = 1)*/
     @Column(name = "actorid")
     private Long id;
     @Column(name = "actorname")
@@ -21,7 +21,7 @@ public class Actor {
     private  String description;
     @Column(name = "photo")
     private String photo;
-    @ManyToMany(mappedBy = "actors",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "actors",cascade = CascadeType.DETACH)
     public List<Film> films = new ArrayList<Film>();
 
 

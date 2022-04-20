@@ -12,7 +12,7 @@ public interface ActorService {
     Actor addActor(Actor actor);
     List<Film> deleteFilmsFromActor(Actor actor);
     void deleteActorFromFilm(Actor actor,List<Film> films);
-    void deleteActor(Actor Actor);
+    void deleteActor(Long id);
     Actor getActor(Long id);
     Actor getActorByName(String name);
     List <Actor> getActorsByFilm(Film f);

@@ -14,7 +14,7 @@ import java.util.List;
 public class ActorServiceImpl implements ActorService {
 
 
-    ActorRepository actorRepository;
+    private final ActorRepository actorRepository;
     private List<Actor> actors;
 
     @Autowired
@@ -23,27 +23,22 @@ public class ActorServiceImpl implements ActorService {
     }
 
     @Override
-    public Actor saveActor(Long id ,Actor actor) {
+    public Actor saveActor(Long id, Actor actor) {
 
-        Actor a = actorRepository.findById(id).get();
-        a.setName(actor.getName());
-        a.setPhoto(actor.getPhoto());
-        a.setDescription(actor.getDescription());
-        return actorRepository.save(a);
+        actor.setId(id);
+        return actorRepository.save(actor);
     }
 
     @Override
     public Actor addActor(Actor actor) {
-        actor.setId(null);
         return actorRepository.save(actor);
-
     }
 
     @Override
     public List<Film> deleteFilmsFromActor(Actor actor) {
         List<Film> films = actor.getFilms();
         List<Film> toRemove = new ArrayList<>();
-        for (Film film: films) {
+        for (Film film : films) {
             toRemove.add(film);
         }
         films.removeAll(toRemove);
@@ -54,17 +49,15 @@ public class ActorServiceImpl implements ActorService {
     public void deleteActorFromFilm(Actor actor, List<Film> films) {
 
         for (Film film : films) {
-            if(film.getActors().contains(actor)) film.getActors().remove(actor);
+            film.actors.remove(actor);
         }
 
     }
 
     @Override
-    public void deleteActor(Actor actor) {
-
-        actorRepository.delete(actor);
+    public void deleteActor(Long id) {
+        actorRepository.deleteById(id);
     }
-
 
     @Override
     public Actor getActor(Long id) {

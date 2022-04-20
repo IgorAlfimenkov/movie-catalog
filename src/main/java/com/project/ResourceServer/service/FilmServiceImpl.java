@@ -28,28 +28,20 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public Film addFilm(Film film) {
 
-        film.setId(null);
         return filmRepository.save(film);
     }
 
     @Override
-    public void deleteFilm(Film film) {
+    public void deleteFilm(Long id) {
 
-        filmRepository.delete(film);
+        filmRepository.deleteById(id);
     }
 
     @Override
     public Film saveFilm(Long id, Film film) {
 
-        Film f = filmRepository.findById(id).get();
-        f.setFilmName(film.getFilmName());
-        f.setDescription(film.getDescription());
-        f.setDuration(film.getDuration());
-        f.setPoster(film.getPoster());
-        f.setTrailer(film.getTrailer());
-        f.setRating(film.getRating());
-        f.setYear(film.getYear());
-        return filmRepository.save(f);
+       film.setId(id);
+        return filmRepository.save(film);
     }
 
     @Override
@@ -96,7 +88,6 @@ public class FilmServiceImpl implements FilmService {
         }
         film.getUsers().removeAll(toRemove);
     }
-
 
     public List<Film> getFilmsByYear(int year) {
 

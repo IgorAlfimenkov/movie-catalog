@@ -78,6 +78,9 @@
     <br/>
 </div>
 <a th:href="@{/actors/edit/{id}(id=${actor.getId()})}">Update</a>
-<a th:href ="@{/actors/delete/{id}(id=${actor.getId()})}" >Delete actor</a>
+<form th:action="@{/actors/delete/{id}(id=${actor.getId()})}" method="post">
+    <input type="hidden" name="_method" value="delete" />
+    <input type="submit" value="delete" />
+</form>
 </body>
 </html>

@@ -46,23 +46,15 @@ public class FilmsController {
     }
 
     @GetMapping("/add")
-    public String addPage() {
+    public String addPage(Model model) {
+        model.addAttribute("film", new Film());
         return "views/addFilm";
     }
 
     @PostMapping("/add")
-    public String addFilm(@RequestParam(name = "filmName", required = false) String filmName,
-                          @RequestParam(name = "year") int year,
-                          @RequestParam(name = "duration") int duration,
-                          @RequestParam(name = "rating") float rating,
-                          @RequestParam(name = "description") String description,
-                          @RequestParam(name = "poster") String poster,
-                          @RequestParam(name = "trailer") String trailer,
-                          @RequestParam(name = "companyname") String company, Model model) {
-        Film film = new Film(filmName, description, poster, trailer, year, rating, duration, company);
-        filmService.addFilm(film);
-        model.addAttribute("films",filmService.getAllFilms());
-        return "views/allFilms";
+    public String addFilm(@ModelAttribute Film film, Model model) {
+        model.addAttribute("film", filmService.addFilm(film));
+        return "views/getFilm";
     }
 
     @GetMapping("/{id}/edit")
@@ -73,14 +65,13 @@ public class FilmsController {
 
     @PostMapping("/{id}")
     public String saveFilm(@PathVariable Long id, Film film, Model model) {
-        filmService.saveFilm(id, film);
-        model.addAttribute("films", filmService.getAllFilms());
-        return "views/allFilms";
+        model.addAttribute("film", filmService.saveFilm(id, film));
+        return "views/getFilm";
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteFilm(@PathVariable Long id) {
-        Film film = filmService.getFilmById(id);
+       /* Film film = filmService.getFilmById(id);
         filmService.deleteActorsFromFilm(film);
         filmService.deleteCategoriesFromFilm(film);
         filmService.deleteUsersFromFilm(film);
@@ -108,9 +99,9 @@ public class FilmsController {
                 user.getFilms().remove(film);
                 userService.saveUser(user.getId(), user);
             }
-        }
+        }*/
 
-        filmService.deleteFilm(film);
+        filmService.deleteFilm(id);
         return "views/allFilms";
     }
 

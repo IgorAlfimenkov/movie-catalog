@@ -4,15 +4,16 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @Entity
-@Table(name="film")
+@Table(name = "film")
 public class Film {
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
-             generator = "film_id_seq")
-    @SequenceGenerator(name="film_id_seq",
-             sequenceName = "films_id_seq",allocationSize = 1)
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+            /*generator = "film_id_seq")*/
+    /*@SequenceGenerator(name = "film_id_seq",
+            sequenceName = "film_id_seq", allocationSize = 1)*/
     private Long id;
     @Column(name = "filmname")
     private String name;
@@ -28,9 +29,9 @@ public class Film {
     private float rating;
     @Column(name = "duration")
     private int duration;
-    @Column(name="companyname")
+    @Column(name = "companyname")
     private String company;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "film_actor",
             joinColumns = {@JoinColumn(name = "film_id")},
@@ -46,22 +47,21 @@ public class Film {
         this.users = users;
     }
 
-    public void removeActors(Film film)
-    {
+    public void removeActors(Film film) {
         actors.stream().filter(actor -> actor.getFilms().remove(this));
     }
-    @ManyToMany(cascade = CascadeType.ALL)
+
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
-            name ="film_category",
+            name = "film_category",
             joinColumns = {@JoinColumn(name = "film_id")},
-            inverseJoinColumns = {@JoinColumn(name="category_id")}
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
     public List<Category> categories = new ArrayList<Category>();
     @ManyToMany(mappedBy = "films", cascade = CascadeType.ALL)
-        public List<User> users = new ArrayList<User>();
+    public List<User> users = new ArrayList<User>();
 
-    public Film()
-    {
+    public Film() {
 
     }
 
@@ -71,7 +71,7 @@ public class Film {
 
     }
 
-    public Film(String name, String description, String poster, String trailer, int year, float rating, int duration,  String company) {
+    public Film(String name, String description, String poster, String trailer, int year, float rating, int duration, String company) {
         this.name = name;
         this.description = description;
         this.poster = poster;
@@ -82,19 +82,19 @@ public class Film {
         this.company = company;
     }
 
-    public void AddActor(Actor actor)
-    {
+    public void AddActor(Actor actor) {
         this.actors.add(actor);
     }
-    public void AddCategory(Category category){this.categories.add(category);}
 
-    public List<Actor> getActors()
-    {
+    public void AddCategory(Category category) {
+        this.categories.add(category);
+    }
+
+    public List<Actor> getActors() {
         return this.actors;
     }
 
-    public void setActors(List<Actor> actors)
-    {
+    public void setActors(List<Actor> actors) {
 
         this.actors = actors;
     }
@@ -103,8 +103,7 @@ public class Film {
         return this.categories;
     }
 
-    public void setCategories(Category category)
-    {
+    public void setCategories(Category category) {
         this.categories.add(category);
     }
 
@@ -217,10 +216,9 @@ public class Film {
                 '}';
     }
 
-    public String showActors()
-    {
-        String res ="Actors:";
-        for (Actor actor:this.actors) {
+    public String showActors() {
+        String res = "Actors:";
+        for (Actor actor : this.actors) {
             res += actor.getName() + ",";
         }
         return res;

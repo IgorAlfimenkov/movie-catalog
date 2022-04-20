@@ -28,23 +28,15 @@ public class ActorsController {
 
     @GetMapping("")
     public String all(Model model) {
-        List<Actor> actors = actorService.getAllActors();
-        model.addAttribute("actors", actors);
+        model.addAttribute("actors", actorService.getAllActors());
         return "views/allActors";
     }
 
     @PostMapping("/add")
-    public String add(@RequestParam String name,
-                      @RequestParam String photo,
-                      @RequestParam String description,
-                      Model model) {
+    public String add( @ModelAttribute Actor actor, Model model) {
 
-
-        Actor actor = new Actor(name, description, photo);
-        actorService.addActor(actor);
-        List<Actor> actors = actorService.getAllActors();
-        model.addAttribute("actors", actors);
-        return "views/allActors";
+        model.addAttribute("actor", actorService.addActor(actor));
+        return "views/getActor";
     }
 
     @PostMapping("/get/actor")
@@ -57,20 +49,9 @@ public class ActorsController {
     }
 
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteActor(@PathVariable Long id, Model model) {
-        Actor actor = actorService.getActor(id);
-        actor.setFilms(actorService.deleteFilmsFromActor(actor));
-        actorService.saveActor(actor.getId(), actor);
-        List<Film> films = filmService.getAllFilms();
-        for (Film film : films) {
-            if (film.getActors().contains(actor)) {
-
-                film.getActors().remove(actor);
-                filmService.saveFilm(film.getId(), film);
-            }
-        }
-        actorService.deleteActor(actor);
+        actorService.deleteActor(id);
         return all(model);
     }
 
@@ -82,7 +63,9 @@ public class ActorsController {
     }
 
     @GetMapping("/add")
-    public String getAddActorForm() {
+    public String getAddActorForm(Model model) {
+
+        model.addAttribute("actor", new Actor());
         return "views/addActor";
     }
 

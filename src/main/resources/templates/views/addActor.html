@@ -44,13 +44,13 @@
 <header>
     <h1><a th:href="@{/films/}">Movie Library</a></h1>
 </header>
-<form method= "post" action="/actors/add">
+<form method= "post" th:action="@{/actors/add}" th:object="${actor}" >
     <input type="text" name="name" placeholder="Enter name" />
+    <br><br>
+    <input type="text" name="description" placeholder="Enter description" />
     <br><br>
     <input type="text" name="photo" placeholder="Enter photo url" />
     <br><br>
-    <input type="text" name="description" placeholder="Enter description" />
-    <br>
     <button type="submit">Add</button>
 </form>
 </body>

@@ -9,16 +9,16 @@ import java.util.Objects;
 @Table(name="category")
 public class Category {
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE,
+    @GeneratedValue(strategy= GenerationType.IDENTITY)/*,
     generator = "category_seq")
     @SequenceGenerator(name="category_seq",
-    sequenceName = "category_id_seq",allocationSize = 1)
+    sequenceName = "category_id_seq",allocationSize = 1)*/
     @Column(name = "id")
     private Long id;
     @Column(name = "categoryname")
     private String name;
 
-    @ManyToMany(mappedBy = "categories", cascade= CascadeType.ALL)
+    @ManyToMany(mappedBy = "categories", cascade= CascadeType.DETACH)
     List<Film> films = new ArrayList<Film>();
 
     public Category() {

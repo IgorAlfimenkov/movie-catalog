@@ -5,21 +5,23 @@
     <title th:text="${film.getFilmName()}"></title>
     <style>
         html, body {
-            margin:0;
-            padding:0;
+            margin: 0;
+            padding: 0;
         }
+
         body {
 
             background-color: whitesmoke;
-            color : darkslategray;
+            color: darkslategray;
         }
 
         img {
             width: 270px;
             border-radius: 2%;
-            margin-top:15px;
-            margin-left:35px;
+            margin-top: 15px;
+            margin-left: 35px;
         }
+
         a {
             text-decoration: none;
             color: darkslategray;
@@ -31,6 +33,7 @@
         }
 
         h1 {
+            text-align: center;
             margin-left: 15px;
         }
 
@@ -38,35 +41,37 @@
             text-align: center;
         }
 
-        .films {
-            display:inline-block;
-            padding: 0;
-            margin-top: 25px;
-            margin-bottom: 50px;
-        }
 
         .film-card {
-            max-width: 90%;
-            padding: 1%;
+            display: inline-block;
+            width: 600px;
+            padding-left: 2%;
+            padding-bottom: 2%;
+            margin-top: 10px;
         }
 
-       .cell-img {
-           float: left;
-           margin-right: 20px;
-       }
-        .trailer {
+        .cell-img {
             float: left;
-            margin-left: 45px;
+            margin-right: 20px;
+        }
+        .trailer {
+            display: inline-block;
+            margin-top: 10px;
+            float: right;
+            padding-right: 5%;
         }
 
-        .actor,category{
+        .update, .category {
             margin-left: 15px;
-            padding: 1%;
         }
 
-        .update{
-            margin-left: 15px;
-            pading: 1%;
+        .links {
+            margin-left: 5%;
+        }
+
+        #delbutton {
+            float: right;
+            margin-right: 5%;
         }
 
 
@@ -77,45 +82,50 @@
     <h1><a th:href="@{/films/}">Movie Library</a></h1>
 </header>
 <h2 th:text="${film.getFilmName()}"></h2>
+<main>
 <div class="film-card">
-<div class="cell-img"><img th:src="${film.getPoster()}"></div>
-<div class="info">
-    <div class="description">
-        <p  th:text="${film.getDescription()}"></p>
-    </div>
-    <div>
-        <p>Year of creation : <b th:text="${film.getYear()}"></b></p>
-        <p>Company : <b th:text="${film.getCompany()}"></b></p>
-        <p>Rating : <b th:text="${film.getRating()}"></b></p>
-        <p>Duration : <b th:text="${film.getDuration()}"></b> min</p>
-    </div>
-</div>
-    <b>Actors:</b>
-    <div th:each = "actor : ${film.actors}">
+    <div class="cell-img"><img th:src="${film.getPoster()}"></div>
+    <div class="info">
+        <div class="description">
+            <p th:text="${film.getDescription()}"></p>
+        </div>
         <div>
-            <a  th:href="@{/actors/get/{id}(id=${actor.getId()})}" th:text="${actor.getName()}">Name</a>
+            <p>Year of creation : <b th:text="${film.getYear()}"></b></p>
+            <p>Company : <b th:text="${film.getCompany()}"></b></p>
+            <p>Rating : <b th:text="${film.getRating()}"></b></p>
+            <p>Duration : <b th:text="${film.getDuration()}"></b> min</p>
+        </div>
+    </div>
+    <b>Actors:</b>
+    <div th:each="actor : ${film.actors}">
+        <div>
+            <a th:href="@{/actors/get/{id}(id=${actor.getId()})}" th:text="${actor.getName()}">Name</a>
         </div>
     </div>
     <br>
     <br>
     <b>Categories</b>
-    <div th:each = "category : ${film.categories}">
+    <div th:each="category : ${film.categories}">
         <div>
-            <a  th:href="@{/category/films/{id}(id=${category.getId()})}" th:text="${category.getCategoryName()}">Name</a>
+            <a th:href="@{/category/films/{id}(id=${category.getId()})}"
+               th:text="${category.getCategoryName()}">Name</a>
         </div>
+    </div>
 </div>
+
+<iframe class="trailer" width="560" height="315" th:src="${film.getTrailer()}" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+</main>
+<div class="links">
+    <a class="actor" th:href="@{/films/add/actor/{id}(id=${film.getId()})}">Add actor</a>
+    <a class="category" th:href="@{/films/add/category}">Add category</a>
+    <a class="update" th:href="@{/films/{id}/edit(id=${film.getId()})}">Update</a>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<iframe class="trailer" width="560" height="315"  th:src="${film.getTrailer()}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<a class="actor" th:href="@{/films/add/actor/{id}(id=${film.getId()})}">Add actor</a>
-<a class="category" th:href="@{/films/add/category}">Add category</a>
-<a class="update" th:href="@{/films/{id}/edit(id=${film.getId()})}">Update</a>
+
+<form id ="delbutton"th:action="@{/films/delete/{id}(id=${film.getId()})}" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="delete"/>
+</form>
 </body>
 </html>
