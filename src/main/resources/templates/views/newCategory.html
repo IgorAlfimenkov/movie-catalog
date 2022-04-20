@@ -43,9 +43,9 @@
     </style>
 </head>
 <body>
-<form class="add" method="post">
-    <input type="text" name="name" placeholder="Enter name" />
-    <input type="text" name="id" placeholder="Enter id" />
+<form class="add" method="post" th:action="@{/films/add/category}">
+    <input type="text" name="name"  th:name="filmname" placeholder="Enter film name" />
+    <input type="text" name="id" th:name="name" placeholder="Enter category name" />
     <button type="submit">Add</button>
 </form>
 </body>
