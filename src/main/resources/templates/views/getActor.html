@@ -5,9 +5,10 @@
     <title th:text="${actor.getName()}"></title>
     <style>
         html, body {
-            margin:0;
-            padding:0;
+            margin: 0;
+            padding: 0;
         }
+
         body {
 
             background-color: #c5d5cb;
@@ -26,9 +27,10 @@
         img {
             width: 270px;
             border-radius: 2%;
-            margin-top:15px;
-            margin-left:35px;
+            margin-top: 15px;
+            margin-left: 35px;
         }
+
         a {
             text-decoration: none;
             color: #36423b;
@@ -114,6 +116,23 @@
             color: rgba(0, 0, 0, 0.65);
             transform: translateY(0);
         }
+
+        #buttons {
+
+            width: 300px;
+            padding: 2%;
+        }
+
+        #update {
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        #delete {
+            display: inline-block;
+            margin-left: 15px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -125,18 +144,18 @@
     <div class="cell-img"><img th:src="${actor.getPhoto()}"></div>
     <div class="cell-description"><p th:text="${actor.getDescription()}"></p></div>
     <b>Films with <span th:text="${actor.getName()}">Name</span></b>
-    <ul th:each = "film : ${actor.getFilms()}">
+    <ul th:each="film : ${actor.getFilms()}">
         <li><a th:href="@{/films/get/{id}(id=${film.getId()})}" th:text="${film.getFilmName()}">Name</a></li>
     </ul>
     <br/>
     <br/>
 </div>
-<a th:href="@{/actors/edit/{id}(id=${actor.getId()})}">Update</a>
-<br>
-<br>
-<form th:action="@{/actors/delete/{id}(id=${actor.getId()})}" method="post">
-    <input type="hidden" name="_method" value="delete" />
-    <button type="submit" value="" >Delete</button>
-</form>
+<div id="buttons">
+    <a id="update" th:href="@{/actors/edit/{id}(id=${actor.getId()})}">Update</a>
+    <form id="delete" th:action="@{/actors/delete/{id}(id=${actor.getId()})}" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <button type="submit" value="">Delete</button>
+    </form>
+</div>
 </body>
 </html>
