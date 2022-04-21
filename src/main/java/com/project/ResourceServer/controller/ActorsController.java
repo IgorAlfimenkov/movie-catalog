@@ -89,9 +89,9 @@ public class ActorsController {
 
     @PostMapping("/edit/{id}")
     public String updateActor(@PathVariable Long id,Actor actor, Model model) {
-        actorService.saveActor(id, actor);
-        model.addAttribute("films", filmService.getAllFilms());
-        return "views/allFilms";
+
+        model.addAttribute("actor", actorService.saveActor(id, actor));
+        return "views/getActor";
     }
 
 }

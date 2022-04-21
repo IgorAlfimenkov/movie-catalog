@@ -11,56 +11,47 @@
 
         body {
 
-            background-color: whitesmoke;
-            color: darkslategray;
+            background-color: #c5d5cb;
+            color: #36423b
         }
 
         a {
             text-decoration: none;
-            color: darkslategray;
+            color: #36423b;
+        }
+
+        a:hover {
+            background-color: #36423b;
+            color: #9fa8a3;
         }
 
         header {
-            text-align: center;
-            background-color: whitesmoke;
-            color: darkslategray;
-            margin-bottom: 15px;
-            border-bottom-color: darkslategray;
+            padding: 20px;
+            height: 50px;
+            text-align: left;
+            background-color: #c5d5cb;
+            color: #36423b;
+            border-bottom-color: #c5d5cb;
         }
-
         .container {
             overflow: hidden;
             margin-top: 20%;
-            width: auto;
-            border-color: whitesmoke;
+            width: 100%;
         }
 
         .menu {
-            white-space: nowrap;
             text-align: center;
-            border-color: whitesmoke;
-
+            width: 100%;
+            font-size: 20px;
+            font-weight: 600;
         }
 
         .menu div {
             width: 100px;
             height: 35px;
             display: inline-block;
-            border: 1px solid whitesmoke;
-            margin-left: 20px;
-        }
-
-        .menu div a:hover {
-
-            background-color: darkslategray;
-            color: whitesmoke;
-
-        }
-
-        .settings {
-            padding: 1%;
-            float: right;
-            margin-bottom: 10px;
+            margin-right: 25px;
+            text-align: center;
         }
     </style>
 </head>
@@ -71,13 +62,10 @@
 <div class="container">
     <div class="menu">
         <div><a th:href="@{/films/all}">FILMS</a></div>
-        <div><a th:href="@{/category/all}">CATEGORIES</a></div>
         <div><a th:href="@{/actors/}">ACTORS</a></div>
+        <div><a th:href="@{/category/all}">CATEGORIES</a></div>
     </div>
 </div>
-
-
-
 </body>
 </html>
 

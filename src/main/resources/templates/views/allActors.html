@@ -6,29 +6,32 @@
     <style>
 
         html, body {
-            margin:0;
-            padding:0;
+            margin: 0;
+            padding: 0;
         }
+
         body {
 
-            background-color: whitesmoke;
-            color : darkslategray;
+            background-color: #c5d5cb;
+            color: #36423b
         }
 
         img {
             width: 200px;
+            height: 275px;
             border-radius: 2%;
-            margin-top:15px;
-            margin-left:35px;
+            margin-top: 15px;
+            margin-left: 35px;
         }
+
         a {
             text-decoration: none;
-            color: darkslategray;
+            color: #36423b;
         }
 
         a:hover {
-            background-color: darkslategray;
-            color: whitesmoke;
+            background-color: #36423b;
+            color: #9fa8a3;
         }
 
         h1 {
@@ -39,8 +42,17 @@
             text-align: center;
         }
 
+        header {
+            padding: 20px;
+            height: 50px;
+            text-align: left;
+            background-color: #9fa8a3;
+            color: #c5d5cb;
+            border-bottom-color: #c5d5cb;
+        }
+
         .actors {
-            display:inline-block;
+            display: inline-block;
             padding: 0;
             margin-top: 25px;
             margin-bottom: 50px;
@@ -62,28 +74,126 @@
         }
 
         .search {
-            float: right;
-            padding: 1%;
+
+            margin-left: 20px;
+        }
+
+        main {
+            margin-top: 10px;
+            margin-left: 30px;
+            width: 68%;
+            border: 3px solid black;
+            padding: 10px;
+            /*display: inline-block;*/
+        }
+
+        .wrapper {
+            position: relative;
+            min-height: 100%;
+            display: flex;
+        }
+
+
+        nav {
+            /*display: inline-block;*/
+            margin-top: 10px;
+            width: 20%;
+            padding: 10px;
+        }
+
+        button {
+            margin: 0;
+            margin-top: 25px;
+            align-items: center;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: .25rem;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            box-sizing: border-box;
+            color: rgba(0, 0, 0, 0.85);
+            cursor: pointer;
+            display: inline-flex;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 1.25;
+            min-height: 1rem;
+            padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+            position: relative;
+            text-decoration: none;
+            transition: all 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            height: 23px;
+        }
+
+        input {
+            height: 23px;
+        }
+
+        button:hover,
+        button:focus {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            background-color: #F0F0F1;
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            color: rgba(0, 0, 0, 0.65);
+            transform: translateY(0);
+        }
+
+        header {
+            padding: 20px;
+            height: 50px;
+            text-align: left;
+            background-color: #9fa8a3;
+            color: #c5d5cb;
+            border-bottom-color: #c5d5cb;
         }
 
     </style>
 </head>
 <body>
 <header>
-    <a id="add-actor" th:href="@{add}">Add actor</a>
-    <form class="search" action="/actors/get" method="get">
-        <input type="search" name="name" placeholder="Search...">
-        <input type="submit" value="Search">
-    </form>
     <h1><a th:href="@{/films/}">Movie Library</a></h1>
 </header>
 <h2>Actors</h2>
-<div class="actors" th:each = "actor : ${actors}">
-    <div class="actor-card">
-        <div class="photo"><img th:src="${actor.getPhoto()}"></div>
-        <br/><div class="name"><a  th:href="@{/actors/get/{id}(id=${actor.getId()})}" th:text="${actor.getName()}">Name</a></div>
-        <!--<p> <span th:text="${actor.getDescription}">Description</span></p>-->
-    </div>
+<div class="wrapper">
+    <nav>
+        <form class="search" action="/actors/get" method="get">
+            <input type="search" name="name" placeholder="Search...">
+            <button type="submit" value="">Search</button>
+        </form>
+        <br>
+        <ul>
+            <li><a th:href="@{/actors/add}" class="add">Add actor</a></li>
+            <br><br>
+            <li><a th:href="@{/category/all}">All categories</a></li>
+            <br><br>
+            <li><a th:href="@{/films/all}">All films</a></li>
+            <br><br>
+        </ul>
+    </nav>
+    <main>
+        <div class="actors" th:each="actor : ${actors}">
+            <div class="actor-card">
+                <div class="photo"><img th:src="${actor.getPhoto()}"></div>
+                <br/>
+                <div class="name"><a th:href="@{/actors/get/{id}(id=${actor.getId()})}"
+                                     th:text="${actor.getName()}">Name</a></div>
+            </div>
+        </div>
+    </main>
 </div>
 <br/>
 <br/>

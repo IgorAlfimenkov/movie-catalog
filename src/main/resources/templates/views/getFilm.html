@@ -10,9 +10,17 @@
         }
 
         body {
+            background-color: #c5d5cb;
+            color: #36423b
+        }
 
-            background-color: whitesmoke;
-            color: darkslategray;
+        header {
+            padding: 20px;
+            height: 50px;
+            text-align: left;
+            background-color: #9fa8a3;
+            color: #c5d5cb;
+            border-bottom-color: #c5d5cb;
         }
 
         img {
@@ -24,16 +32,16 @@
 
         a {
             text-decoration: none;
-            color: darkslategray;
+            color: #36423b;
         }
 
         a:hover {
-            background-color: darkslategray;
-            color: whitesmoke;
+            background-color: #36423b;
+            color: #9fa8a3;
         }
 
         h1 {
-            text-align: center;
+            text-align: left;
             margin-left: 15px;
         }
 
@@ -48,6 +56,10 @@
             padding-left: 2%;
             padding-bottom: 2%;
             margin-top: 10px;
+        }
+
+        .info {
+            margin-left: 20px;
         }
 
         .cell-img {
@@ -72,6 +84,51 @@
         #delbutton {
             float: right;
             margin-right: 5%;
+        }
+
+        button {
+            align-items: center;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: .25rem;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            box-sizing: border-box;
+            color: rgba(0, 0, 0, 0.85);
+            cursor: pointer;
+            display: inline-flex;
+            font-size: 16px;
+            font-weight: 500;
+            justify-content: center;
+            line-height: 1.25;
+            margin: 0;
+            max-height: 2rem;
+            text-decoration: none;
+            transition: all 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            height: 23px;
+            width: 70px;
+        }
+
+        button:hover,
+        button:focus {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            background-color: #F0F0F1;
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            color: rgba(0, 0, 0, 0.65);
+            transform: translateY(0);
         }
 
 
@@ -119,13 +176,13 @@
 </main>
 <div class="links">
     <a class="actor" th:href="@{/films/add/actor/{id}(id=${film.getId()})}">Add actor</a>
-    <a class="category" th:href="@{/films/add/category}">Add category</a>
+    <a class="category" th:href="@{/films/add/category/{id}(id=${film.getId()})}">Add category</a>
     <a class="update" th:href="@{/films/{id}/edit(id=${film.getId()})}">Update</a>
 </div>
 
 <form id ="delbutton"th:action="@{/films/delete/{id}(id=${film.getId()})}" method="post">
     <input type="hidden" name="_method" value="delete"/>
-    <input type="submit" value="delete"/>
+    <button type="submit" value="delete"/>Delete</button>
 </form>
 </body>
 </html>

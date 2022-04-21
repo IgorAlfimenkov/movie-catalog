@@ -81,28 +81,23 @@ public class CategoryController {
     public String getCategory(@PathVariable Long id, Model model)
     {
          Category category = categoryService.getCategoryById(id);
-         model.addAttribute("category", category);
-         return "views/get";
+         model.addAttribute("films", category.getFilms());
+         return "views/allFilms";
     }
 
     @GetMapping("films/{id}")
     public String getFilms(@PathVariable Long id, Model model)
     {
         Category category = categoryService.getCategoryById(id);
-        List<Film> films = category.getFilms();
-        model.addAttribute("films", films);
-        model.addAttribute("category", category);
-        return "views/categoryFilms";
+        model.addAttribute("films", category.getFilms());
+        return "views/allFilms";
     }
 
     @GetMapping("/get")
     public String getByName(@RequestParam(name = "name") String name, Model model)
     {
         Category category = categoryService.getCategory(name);
-        model.addAttribute("category",category);
-        return "views/get";
+        model.addAttribute("films",category.getFilms());
+        return "views/allFilms";
     }
-
-
-
 }

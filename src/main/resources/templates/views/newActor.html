@@ -3,15 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Actor</title>
+    <style>
+        html, body {
+            margin:0;
+            padding:0;
+        }
+        body {
+
+            background-color: #c5d5cb;
+            color: #36423b
+        }
+        a {
+            text-decoration: none;
+            color: #36423b;
+        }
+
+        a:hover {
+            background-color: #36423b;
+            color: #9fa8a3;
+        }
+
+        header {
+            padding: 20px;
+            height: 50px;
+            text-align: left;
+            background-color: #9fa8a3;
+            color: #c5d5cb;
+            border-bottom-color: #c5d5cb;
+        }
+        .add {
+            margin: 30px;
+            padding: 1%;
+            width: 280px;
+            border-radius: 5px;
+            background-color: #9fa8a3;
+            color: #36423b;
+            border: 2px solid #36423b;
+        }
+
+        button {
+            align-items: center;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: .25rem;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            box-sizing: border-box;
+            color: rgba(0, 0, 0, 0.85);
+            cursor: pointer;
+            display: inline-flex;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 1.25;
+            margin: 0;
+            min-height: 1rem;
+            padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+            position: relative;
+            text-decoration: none;
+            transition: all 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            height: 20px;
+        }
+
+        button:hover,
+        button:focus {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            background-color: #F0F0F1;
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            color: rgba(0, 0, 0, 0.65);
+            transform: translateY(0);
+        }
+
+        input {
+            height: 23px;
+        }
+
+    </style>
 </head>
 <body>
-<form method="post" th:action="@{/films/add/actor/{id}(id=${film.getId()})}" >
+<header>
+    <h1><a th:href="@{/films/}">Movie Library</a></h1>
+</header>
+<form class="add" method="post" th:action="@{/films/add/actor/{id}(id=${film.getId()})}" >
     <div class="inputField">
         <label >Enter actor name:</label>
         <input type="text" name="name">
     </div>
     <br>
-
     <button type="submit">Add</button>
 </form>
 <a></a>

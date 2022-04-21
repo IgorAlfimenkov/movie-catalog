@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Movie categories</title>
     <style>
         html, body {
             margin: 0;
@@ -13,28 +11,22 @@
             margin-left: 15px;
         }
 
-        body {
+        h2{
+            margin-left: 220px;
+        }
 
-            background-color: whitesmoke;
-            color: darkslategray;
+        body {
+            background-color: #c5d5cb;
+            color: #36423b
         }
 
         header {
+            padding: 20px;
+            height: 50px;
             text-align: center;
-            background-color: whitesmoke;
-            color: darkslategray;
-            margin-bottom: 15px;
-            border-bottom-color: whitesmoke;
-            border-radius: 2%;
-            border-color: darkslategray;
-        }
-
-        main {
-            width: 100px;
-            height: 35px;
-            display: inline-block;
-            border: 1px solid whitesmoke;
-            margin-left: 40px;
+            background-color: #9fa8a3;
+            color: #c5d5cb;
+            border-bottom-color: #c5d5cb;
         }
 
         a {
@@ -49,43 +41,144 @@
         }
 
         .search {
-            float: right;
-            padding: 1%;
+            margin-left: 20px;
+        }
+
+        main {
+            width: 60%;
+            height: auto;
+            padding-top: 2%;
+            padding-left: 9%;
         }
 
         .menu {
-            float: left;
+            padding: 2%;
+            width: 630px;
+            margin-bottom: 5%;
         }
 
-        .add {
+        .item {
+            margin-top: 10px;
+            margin-left: 20px;
+            width: 130px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        nav {
+            margin-top: 10px;
+            width: 20%;
+            padding: 10px;
+        }
+
+        .content {
+            display: flex;
+            background-color: #c5d5cb;
+            max-height: available;
+            /*width: 98%;*/
+        }
+
+        section {
+            text-align: center;
+            padding: 2%;
+            width: 200px;
             float: right;
-            margin-right: 40px;
+            margin-left: 50px;
+            margin-right: 10px;
         }
 
+        .category {
+            font-size: 20px;
+        }
 
+        button {
+            margin: 0;
+            margin-top: 25px;
+            align-items: center;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: .25rem;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            box-sizing: border-box;
+            color: rgba(0, 0, 0, 0.85);
+            cursor: pointer;
+            display: inline-flex;
+            font-size: 13px;
+            font-weight: 500;
+            justify-content: center;
+            line-height: 1.25;
+            min-height: 1rem;
+            padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+            position: relative;
+            text-decoration: none;
+            transition: all 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            width: 50px;
+            height: 18px;
+        }
+
+        button:hover,
+        button:focus {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            background-color: #F0F0F1;
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            color: rgba(0, 0, 0, 0.65);
+            transform: translateY(0);
+        }
+        input {
+            height: 25px;
+        }
     </style>
+    <meta charset="UTF-8">
+    <title>Movie categories</title>
 </head>
 <body>
 <header>
-    <form class="search" action="/category/get" method="get">
-        <input type="search" name="name" placeholder="Search...">
-        <input type="submit" value="Search">
-    </form>
     <h1><a th:href="@{/films/}">Movie Library</a></h1>
 </header>
-
-<main>
-    <ul class="menu" th:each="category : ${categories}">
-        <li><a th:href="@{/category/films/{id}(id=${category.getId()})}"
-               th:text="${category.getCategoryName().toUpperCase()}">Name</a></li>
+<div class="content">
+    <nav>
+        <form class="search" action="/category/get" method="get">
+            <input type="search" name="name" placeholder="Search...">
+            <button type="submit" value="Search">Search</button>
+        </form>
         <br>
-    </ul>
-
-</main>
-<form class="add" method="post">
-    <input type="text" name="name" placeholder="Enter name"/>
-    <br><br>
-    <button type="submit">Add</button>
-</form>
+        <ul>
+            <li><a th:href="@{/films/all}">All films</a></li>
+            <br><br>
+            <li><a th:href="@{/actors/}">All actors</a></li>
+            <br><br>
+        </ul>
+    </nav>
+    <main>
+        <h2>All movie categories</h2>
+        <div class="menu"> <!--th:each="category : ${categories}"-->
+            <div class="item" th:each="category : ${categories}"> <a class="category" th:href="@{/category/films/{id}(id=${category.getId()})}"
+                    th:text="${category.getCategoryName().toUpperCase()}">Name</a></div>
+        </div>
+    </main>
+    <section>
+        <form class="add" method="post">
+            <label> Enter new category name: </label>
+            <br><br>
+            <input type="text" name="name" placeholder="Enter name"/>
+            <br><br>
+            <button type="submit">Add</button>
+        </form>
+    </section>
+</div>
 </body>
 </html>

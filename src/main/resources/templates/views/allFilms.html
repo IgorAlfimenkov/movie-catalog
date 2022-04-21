@@ -20,9 +20,17 @@
         }
 
         body {
+            background-color: #c5d5cb;
+            color: #36423b;
+        }
 
-            background-color: whitesmoke;
-            color: darkslategray;
+        header {
+            padding: 20px;
+            height: 50px;
+            text-align: center;
+            background-color: #9fa8a3;
+            color: #c5d5cb;
+            border-bottom-color: #c5d5cb;
         }
 
         img {
@@ -35,12 +43,12 @@
 
         a {
             text-decoration: none;
-            color: darkslategray;
+            color: #36423b;
         }
 
         a:hover {
-            background-color: darkslategray;
-            color: whitesmoke;
+            background-color: #36423b;
+            color: #9fa8a3;
         }
 
         h1 {
@@ -54,26 +62,15 @@
         }
 
         main {
-            margin: auto;
+            margin-top: 10px;
+            margin-left: 10px;
             width: 68%;
-            border: 3px solid black;
             padding: 10px;
         }
 
-        footer {
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 80px;
-            border-top-color: #ccc; /* Цвет линии сверху */
-            border-top-style: none;
-            /*border-top-color:  white; !* Цвет границы *!
-            border-style: solid;  !*Стиль границы *!*/
-        }
 
         .films {
-            display:inline-block;
+            display: inline-block;
             padding: 0;
             margin-top: 25px;
             margin-bottom: 50px;
@@ -98,68 +95,107 @@
         .rating {
             margin-left: 50px;
         }
-/*
-        .add {
-            float: right;
-            margin-bottom: 10px;
-            padding: 1%;
-        }*/
 
-        .search {
-            float: right;
-            padding: 1%;
-        }
 
-        .wrapper {
-            position: relative;
-            min-height: 100%;
+        nav {
+            margin-top: 10px;
+            width: 20%;
+            padding: 10px;
         }
 
         .content {
+            display: flex;
             padding-bottom: 90px;
         }
 
+        .btn {
+            align-items: center;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: .25rem;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            box-sizing: border-box;
+            color: rgba(0, 0, 0, 0.85);
+            cursor: pointer;
+            display: inline-flex;
+            font-size: 16px;
+            font-weight: 500;
+            justify-content: center;
+            line-height: 1.25;
+            margin: 0;
+            max-height: 2rem;
+            text-decoration: none;
+            transition: all 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            height: 23px;
+            width: 70px;
+        }
+
+        .btn:hover,
+        .btn:focus {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            background-color: #F0F0F1;
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            color: rgba(0, 0, 0, 0.65);
+            transform: translateY(0);
+        }
+
+        input{
+            height: 23px;
+        }
     </style>
 </head>
 <body>
 <header>
-    <form class="search" action="/films/get" method="get">
-        <input type="search" name="name" placeholder="Search...">
-        <input type="submit" value="Search">
-    </form>
     <h1><a th:href="@{/films/}">Movie Library</a></h1>
-
-
 </header>
 <br>
-<div class="wrapper">
-    <div class="content">
-        <h2>Films</h2>
-        <br><br>
-        <nav>
-            <ul>
-                <li><a th:href="@{/films/add}" class="add">Add film</a></li>
-                <li><a th:href="@{/category/all}">All categories</a></li>
-                <li><a th:href="@{/actors/}">All actors</a></li>
-            </ul>
-        </nav>
-        <main>
-            <div class="films" th:each="film : ${films}">
-                <div class="film-card">
-                    <div class="poster"><img th:src="${film.getPoster()}"></div>
-                    <br/>
-                    <div class="info"><a class="filmname" th:href="@{/films/get/{id}(id=${film.getId()})}"
-                                         th:text="${film.getFilmName()}"></a><span class="rating"
-                                                                                   th:text="${film.getRating()}"></span>
-                    </div>
+<h2>Films</h2>
+<div class="content">
+    <br><br>
+    <nav>
+        <form class="search" action="/films/get" method="get">
+            <input type="search" name="name" placeholder="Search...">
+            <input class="btn" type="submit" value="Search">
+        </form>
+        <br>
+        <ul>
+            <li><a th:href="@{/films/add}" class="add">ADD FILM</a></li>
+            <br><br>
+            <li><a th:href="@{/category/all}">ALL CATEGORIES</a></li>
+            <br><br>
+            <li><a th:href="@{/actors/}">ALL ACTORS</a></li>
+            <br><br>
+        </ul>
+    </nav>
+    <main>
+        <div class="films" th:each="film : ${films}">
+            <div class="film-card">
+                <div class="poster"><img th:src="${film.getPoster()}"></div>
+                <br/>
+                <div class="info"><a class="filmname" th:href="@{/films/get/{id}(id=${film.getId()})}"
+                                     th:text="${film.getFilmName()}"></a><span class="rating"
+                                                                               th:text="${film.getRating()}"></span>
                 </div>
             </div>
-        </main>
-
-    </div>
-    <footer>
-
-    </footer>
+        </div>
+    </main>
 </div>
+<footer>
+
+</footer>
 </body>
 </html>

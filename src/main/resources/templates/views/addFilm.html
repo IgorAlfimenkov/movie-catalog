@@ -10,9 +10,16 @@
         }
 
         body {
+            background-color: #c5d5cb;
+        }
 
-            background-color: whitesmoke;
-            color: darkslategray;
+        header {
+            padding: 20px;
+            height: 50px;
+            text-align: center;
+            background-color: #9fa8a3;
+            color: #c5d5cb;
+            border-bottom-color: #c5d5cb;
         }
 
         img {
@@ -24,12 +31,12 @@
 
         a {
             text-decoration: none;
-            color: darkslategray;
+            color: #36423b;
         }
 
         a:hover {
-            background-color: darkslategray;
-            color: whitesmoke;
+            background-color: #36423b;
+            color: #9fa8a3;
         }
 
         h1 {
@@ -42,6 +49,7 @@
 
         .updateForm {
             margin-left: 30%;
+            margin-top: 20px;
         }
 
         .label {
@@ -53,35 +61,64 @@
         }
 
         .input {
-
             display: inline-flex;
-
         }
 
-        .container {
-            margin: auto;
-            margin-top: 90px;
-            max-width: 1200px;
-            padding: 10px;
-        }
 
         .section {
             padding: 1%;
             width: 50%;
             border-radius: 5px;
-            background-color: darkslategray;
-            color: whitesmoke;
-            border: solid;
+            background-color: #9fa8a3;
+            color: #36423b;
+            border: 2px solid #36423b;
         }
 
         button {
-            font-size: 25px;
-            border: solid black;
-            border-radius: 5px;
-            margin-left: 305px;
-            margin-top: 25px;
+            align-items: center;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: .25rem;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            box-sizing: border-box;
+            color: rgba(0, 0, 0, 0.85);
+            cursor: pointer;
+            display: inline-flex;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 1.25;
+            margin: 0;
+            min-height: 3rem;
+            padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+            position: relative;
+            text-decoration: none;
+            transition: all 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            width: auto;
         }
 
+        button:hover,
+        button:focus {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            background-color: #F0F0F1;
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            color: rgba(0, 0, 0, 0.65);
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -96,7 +133,7 @@
                 <label> Enter film name: </label>
             </div>
             <div class="input">
-                <input autofocus type="text"  th:name="filmName"class="field">
+                <input autofocus type="text" th:name="filmName" class="field">
             </div>
         </div>
         <div class="row">
@@ -157,7 +194,7 @@
         </div>
     </div>
     <br>
-    <input id="update" type="submit" value="ADD">
+    <button id="update" class="btn" type="submit">Add Film</button>
 </form>
 </body>
 </html>

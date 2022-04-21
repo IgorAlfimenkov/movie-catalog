@@ -70,38 +70,9 @@ public class FilmsController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteFilm(@PathVariable Long id) {
-       /* Film film = filmService.getFilmById(id);
-        filmService.deleteActorsFromFilm(film);
-        filmService.deleteCategoriesFromFilm(film);
-        filmService.deleteUsersFromFilm(film);
-        filmService.saveFilm(film.getId(), film);
-        List<Actor> actors = actorService.getAllActors();
-        for (Actor actor : actors) {
-            if (actor.getFilms().contains(film)) {
-
-                actor.getFilms().remove(film);
-                actorService.saveActor(actor.getId(), actor);
-            }
-        }
-        List<Category> categories = categoryService.getCategories();
-        for (Category category : categories) {
-            if (category.getFilms().contains(film)) {
-
-                category.getFilms().remove(film);
-                categoryService.saveCategory(category.getId(), category);
-            }
-        }
-        List<User> users = userService.getAllUsers();
-        for (User user : users) {
-            if (user.getFilms().contains(film)) {
-
-                user.getFilms().remove(film);
-                userService.saveUser(user.getId(), user);
-            }
-        }*/
-
+    public String deleteFilm(@PathVariable Long id, Model model) {
         filmService.deleteFilm(id);
+        model.addAttribute("films", filmService.getAllFilms());
         return "views/allFilms";
     }
 
@@ -123,15 +94,6 @@ public class FilmsController {
         return "views/getFilm";
     }
 
-    @GetMapping("/actors/{id}")
-    public String getActors(@PathVariable Long id, Model model) {
-        Film film = filmService.getFilmById(id);
-        List<Actor> actors = film.getActors();
-        model.addAttribute("actors", actors);
-        model.addAttribute("film", film);
-        return "views/filmActors";
-    }
-
 
     @GetMapping("/add/actor/{id}")
     public String addActorPage(@PathVariable Long id, Model model) {
@@ -144,21 +106,23 @@ public class FilmsController {
         Film film = filmService.getFilmById(id);
         Actor actor = actorService.getActorByName(name);
         film.AddActor(actor);
-        filmService.saveFilm(film.getId(), film);
-        return "views/allFilms";
+        model.addAttribute("film", filmService.saveFilm(film.getId(), film));
+        return "views/getFilm";
     }
 
-    @GetMapping("/add/category")
-    public String addCategoryPage() {
+    @GetMapping("/add/category/{id}")
+    public String addCategoryPage(@PathVariable Long id, Model model) {
+
+        model.addAttribute("filmId" ,id);
         return "views/newCategory";
     }
 
-    @PostMapping("/add/category")
-    public String addCategory(@RequestParam(name = "filmname") String filmname, @RequestParam(name = "name") String name, Model model) {
-        Film film = filmService.getFilmByName(filmname);
+    @PostMapping("/add/category/{id}")
+    public String addCategory(@PathVariable Long id, @RequestParam(name = "name") String name, Model model) {
+        Film film = filmService.getFilmById(id);
         Category category = categoryService.getCategory(name);
         film.AddCategory(category);
-        filmService.saveFilm(film.getId(), film);
-        return "views/allFilms";
+        model.addAttribute("film", filmService.saveFilm(film.getId(), film));
+        return "views/getFilm";
     }
 }
